@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  diaryapi:
+    image: ${DOCKER_REGISTRY-}diaryapi
+    build:
+      context: .
+      dockerfile: DiaryAPI/Dockerfile
