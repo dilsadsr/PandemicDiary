@@ -1,13 +1,29 @@
 version: '3.4'
 
 services:
+
+  diarydb:
+    container_name: diarydb
+    restart: always
+    ports:
+        - "27017:27017"
+
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+        - "5672:5672"
+        - "15672:15672"  
+
   diaryapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - "DiaryDatabaseSettings:ConnectionString=mongodb://diarydb:27017"
+      - "EventBus:HostName=rabbitmq"
+    depends_on:
+       - diarydb
+       - rabbitmq
     ports:
-      - "80"
-      - "443"
-    volumes:
-      - ~/.aspnet/https:/root/.aspnet/https:ro
-      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+      - "8000:80"
+      
+    

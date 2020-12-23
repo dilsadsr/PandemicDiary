@@ -1,8 +1,15 @@
 version: '3.4'
 
 services:
-  diaryapi:
-    image: ${DOCKER_REGISTRY-}diaryapi
-    build:
-      context: .
-      dockerfile: DiaryAPI/Dockerfile
+
+    diarydb:
+      image: mongo
+
+    rabbitmq:
+      image: rabbitmq:3-management-alpine
+
+    diaryapi:
+      image: ${DOCKER_REGISTRY-}diaryapi
+      build:
+          context: .
+          dockerfile: /Users/dilsadsera/Projects/PandemicDiaryApp/DiaryAPI/Dockerfile

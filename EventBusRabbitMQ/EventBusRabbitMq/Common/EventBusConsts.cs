@@ -1,10 +1,8 @@
 ﻿using System;
 namespace EventBusRabbitMq.Common
 {
-    public class EventBusConsts
+    public static class EventBusConsts
     {
-        public EventBusConsts()
-        {
-        }
+        public const string DiaryNoteQueue = "diaryNoteQueue";
     }
 }
